@@ -22,6 +22,7 @@ RUN apt-get update && \
 	php7.4-dev \
 	php7.4;\
 	pecl install mongodb; \
+	echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini; \
 	phpenmod mongodb; \
 	curl -sS https://getcomposer.org/installer > installer.php; \
 	php ./installer.php --install-dir=/usr/local/bin --filename=composer; \
