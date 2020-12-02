@@ -1,4 +1,4 @@
-DOCKER_REPO = yawik/yawik
+DOCKER_REPO = yawik/build
 
 .PHONY: all build build_nc run logs clean stop rm prune
 
