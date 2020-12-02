@@ -1,7 +1,10 @@
 docker image
 ============
 
-simple container with php, composer, npm. 
+Simple container with php7.4, composer, npm based on ubuntu 20.04. It's used
+to run phpunit and behat tests. Pushes to the master trigger the build of
+
+https://hub.docker.com/repository/docker/yawik/build
 
 Requirements
 ------------
