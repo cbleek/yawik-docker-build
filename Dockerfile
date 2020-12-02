@@ -8,15 +8,19 @@ ENV COMPOSER_CACHE_DIR=/var/www/cache/.composer \
 	
 RUN mkdir -p $COMPOSER_CACHE_DIR;
 
-RUN apt-get update && \
-        apt-get -yq install curl git zip unzip; \
+RUN apt update && \
+        apt -yq install curl git zip unzip; \
         curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
-	apt-get install -y nodejs \
-	php-fpm \
-	php-gd \
-	php-intl \
-	php-mongodb \
-	php;\
+	apt install -y nodejs \
+	php7.4-fpm \
+	php7.4-common \
+	php7.4-cli \
+	php7.4-gd \
+	php7.4-intl \
+	php7.4-dev \
+	php7.4;\
+	pecl install mongodb; \
+	phpenmod mongodb; \
 	curl -sS https://getcomposer.org/installer > installer.php; \
 	php ./installer.php --install-dir=/usr/local/bin --filename=composer; \
 	chmod +x /usr/local/bin/composer ;
