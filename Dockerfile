@@ -13,6 +13,7 @@ RUN apt-get update && \
         apt-get -yq install curl git zip unzip nginx; \
         curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
 	apt-get install -y nodejs \
+	openjdk-14-jre-headless \
 	php7.4-fpm \
 	php7.4-common \
 	php7.4-cli \
