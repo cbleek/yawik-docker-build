@@ -12,29 +12,10 @@ services:
       - ./app:/app
     container_name: php
     hostname: php
-    networks:
-      yawik-network:
-        ipv4_address: 172.22.1.150
-        aliases:
-          - unbound
   db:
     container_name: mongodb
     hostname: mongodb
     image: mongo:4.2
     ports:
       - "27017:27017"
-    networks:
-      yawik-network:
-        ipv4_address: 172.22.1.151
-        aliases:
-          - unbound
           
-networks:
-  yawik-network:
-    driver: bridge
-    driver_opts:
-      com.docker.network.bridge.name: br-yawik
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.22.1.0/24
