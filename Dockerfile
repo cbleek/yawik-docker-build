@@ -39,4 +39,7 @@ RUN  apt-get install -y openjdk-14-jre-headless \
 	php ./installer.php --install-dir=/usr/local/bin --filename=composer; \
 	chmod +x /usr/local/bin/composer;
 
+COPY checkout-yawik.sh /home/yawik/checkout-yawik.sh
+
+
 CMD ["nginx", "-g", "daemon off;"]
