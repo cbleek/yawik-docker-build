@@ -7,10 +7,11 @@ ENV COMPOSER_CACHE_DIR=/var/www/cache/.composer
 ENV COMPOSER_HOME=$COMPOSER_CACHE_DIR
 ENV DEBIAN_FRONTEND=noninteractive
 	
-RUN mkdir -p $COMPOSER_CACHE_DIR;
+RUN useradd -ms /bin/bash yawik;\
+    mkdir -p $COMPOSER_CACHE_DIR;
 
 RUN apt-get update && \
-        apt-get -yq install curl git zip unzip nginx; \
+        apt-get -yq install curl git zip unzip nginx joe; \
         curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
 	apt-get install -y nodejs \
 	openjdk-14-jre-headless \

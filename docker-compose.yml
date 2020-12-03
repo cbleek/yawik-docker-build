@@ -6,7 +6,9 @@ web:
     - "8000:80"
   volumes:
     - ./app:/app
+  container_name: php
 db:
+  container_name: mongodb
   image: mongo:4.2
   ports:
     - "27017:27017"
