@@ -12,6 +12,8 @@ services:
       - ./app:/app
     container_name: php
     hostname: php
+    links:
+      - "db:database"
   db:
     container_name: mongodb
     hostname: mongodb
