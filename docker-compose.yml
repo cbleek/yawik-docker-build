@@ -12,6 +12,7 @@ services:
       - ./app:/app
     container_name: php
     hostname: php
+    shm_size: '256M'
     links:
       - "db:mongo"
   db:
