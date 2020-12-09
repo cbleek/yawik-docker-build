@@ -2,7 +2,7 @@ docker image
 ============
 
 Simple container based on ubuntu 20.04 containing everything to run yawik,
-phpunit and behat tests. It's used to run phpunit and behat tests. It Comtains:
+phpunit and behat tests. It's used to run phpunit and behat tests. It contains:
 
 - php7.4
 - java
@@ -11,6 +11,8 @@ phpunit and behat tests. It's used to run phpunit and behat tests. It Comtains:
 - google chome
 - mongo
 - nginx
+
+In addition a unprivileged user `yawik` is created. 
 
 Pushes to the master trigger the build of
 
@@ -47,7 +49,7 @@ yawik@php:~$ ./checkout-yawik.sh
 Status
 ------
 
-work in progress. Image is not ready for work.
+work in progress. Image is used in CI/CD.
 
 License
 -------
