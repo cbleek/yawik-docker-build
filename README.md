@@ -14,6 +14,13 @@ phpunit and behat tests. It's used to run phpunit and behat tests. It contains:
 
 In addition a unprivileged user `yawik` is created. 
 
+The docker images contains a monngodb server, which ist nit started by
+default. A local mongodb can be started by
+
+<pre>
+service mongodb start
+</pre>
+
 Pushes to the master trigger the build of
 
 https://hub.docker.com/repository/docker/yawik/build

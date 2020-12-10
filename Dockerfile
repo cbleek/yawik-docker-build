@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN useradd -ms /bin/bash yawik;\
     mkdir -p $COMPOSER_CACHE_DIR; \
     apt-get update; \
-    apt-get -yq install curl git zip unzip nginx joe;
+    apt-get -yq install curl git zip unzip nginx joe mongodb-server;
 
 RUN  curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
      apt-get install nodejs;
@@ -40,6 +40,5 @@ RUN  apt-get install -y openjdk-14-jre-headless \
 	chmod +x /usr/local/bin/composer;
 
 COPY checkout-yawik.sh /home/yawik/checkout-yawik.sh
-
 
 CMD ["nginx", "-g", "daemon off;"]
