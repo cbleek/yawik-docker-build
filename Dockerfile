@@ -27,12 +27,13 @@ RUN  apt-get install -y openjdk-14-jre-headless \
 	php7.4-cli \
 	php7.4-gd \
 	php7.4-curl \
-	php7.4-solr \
 	php7.4-intl \
 	php7.4-mbstring \
+	php7.4-solr \
 	php7.4-dev \
-	php7.4;\
-	pecl install mongodb; \
+	php7.4;
+
+run pecl install mongodb; \
 	echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini; \
 	phpenmod mongodb; \
 	curl -sS https://getcomposer.org/installer > installer.php; \
