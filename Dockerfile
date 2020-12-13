@@ -27,6 +27,7 @@ RUN  apt-get install -y openjdk-14-jre-headless \
 	php7.4-cli \
 	php7.4-gd \
 	php7.4-curl \
+	php7.4-solr \
 	php7.4-intl \
 	php7.4-mbstring \
 	php7.4-dev \
