@@ -33,6 +33,8 @@ RUN  apt-get install -y openjdk-14-jre-headless \
 	php7.4-dev \
 	php7.4;
 
+run apt-get update --fix-missing;
+
 run pecl install mongodb; \
 	echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini; \
 	phpenmod mongodb; \
