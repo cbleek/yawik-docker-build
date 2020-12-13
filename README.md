@@ -9,7 +9,8 @@ phpunit and behat tests. It's used to run phpunit and behat tests. It contains:
 - composer
 - npm
 - google chome
-- mongo
+- php-mongodb > 1.9
+- php-solr > 2.5
 - nginx
 
 In addition a unprivileged user `yawik` is created. 
