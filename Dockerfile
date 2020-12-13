@@ -20,7 +20,9 @@ RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd
 	apt-get install -y ./google-chrome-stable_current_amd64.deb; \
 	rm google-chrome-stable_current_amd64.deb;
 
-RUN  apt-get install -y openjdk-14-jre-headless \
+
+
+RUN  apt-get update; apt-get install -y openjdk-14-jre-headless \
 	chromium-chromedriver \
 	php7.4-fpm \
 	php7.4-common \
@@ -30,9 +32,8 @@ RUN  apt-get install -y openjdk-14-jre-headless \
 	php7.4-intl \
 	php7.4-mbstring \
 	php7.4-dev \
+	php-solr \
 	php7.4;
-
-run apt-get update --fix-missing;
 
 run pecl install mongodb; \
 	echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini; \
