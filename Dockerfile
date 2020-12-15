@@ -12,8 +12,15 @@ RUN useradd -ms /bin/bash yawik;\
     apt-get update; \
     apt-get -yq install curl git zip unzip nginx joe;
 
+# Install Nodes
 RUN  curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
      apt-get install nodejs;
+
+# Install deployer
+RUN curl -sLO https://deployer.org/deployer.phar; \
+	chmod +x deployer.phar; \
+	mv deployer.phar /usr/local/bin/dep;
+
 
 # we use the google version, because ubuntu version requires snap.
 RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; \
@@ -21,7 +28,7 @@ RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd
 	rm google-chrome-stable_current_amd64.deb;
 
 
-
+# Intall PHP and extensions
 RUN  apt-get update; apt-get install -y openjdk-14-jre-headless \
 	chromium-chromedriver \
 	php7.4-fpm \
