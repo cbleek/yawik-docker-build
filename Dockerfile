@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM php:7.4
 
 LABEL maintainer='"Carsten Bleek" <bleek@cross-solution.de>'
 
@@ -10,11 +10,24 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN useradd -ms /bin/bash yawik;\
     mkdir -p $COMPOSER_CACHE_DIR; \
     apt-get update; \
-    apt-get -yq install curl git zip unzip nginx joe;
+    apt-get -yq install \
+    	curl git zip unzip nginx joe gnupg2 libxi6 libgconf-2-4 \
+    	libcurl4-openssl-dev \
+    	libxml2-dev \
+        libpng-dev \
+    	zlib1g-dev;
+
+
+#RUN apt-get -yq install software-properties-common;
+#	add-apt-repository ppa:linuxuprising/java;\
+#	apt-get update;
+#	apt-get -yq install oracle-java11-installer;
+
+
 
 # Install Nodes
 RUN  curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
-     apt-get install nodejs;
+     apt-get -y install nodejs;
 
 # Install deployer
 RUN curl -sLO https://deployer.org/deployer.phar; \
@@ -22,30 +35,27 @@ RUN curl -sLO https://deployer.org/deployer.phar; \
 	mv deployer.phar /usr/local/bin/dep;
 
 
-# we use the google version, because ubuntu version requires snap.
-RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; \
-	apt-get install -y ./google-chrome-stable_current_amd64.deb; \
-	rm google-chrome-stable_current_amd64.deb;
+RUN docker-php-ext-install intl gd;
 
+
+#RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; \
+#	apt-get install -y ./google-chrome-stable_current_amd64.deb; \
+#	rm google-chrome-stable_current_amd64.deb;
 
 # Intall PHP and extensions
-RUN  apt-get update; apt-get install -y openjdk-14-jre-headless \
-	chromium-chromedriver \
-	php7.4-fpm \
-	php7.4-common \
-	php7.4-cli \
-	php7.4-gd \
-	php7.4-curl \
-	php7.4-intl \
-	php7.4-mbstring \
-	php7.4-dev \
-	php-solr \
-	php7.4;
+#RUN  apt-get update; apt-get install -y openjdk-14-jre-headless \
+#	chromium-chromedriver;
 
-run pecl install mongodb; \
-	echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini; \
-	phpenmod mongodb; \
-	curl -sS https://getcomposer.org/installer > installer.php; \
+# Install PHP mongodb extension
+RUN pecl install mongodb; \
+	echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini;
+
+# Install PHP solr extension
+RUN pecl install solr; \
+	echo "extension=solr.so" > /usr/local/etc/php/conf.d/solr.ini;
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer > installer.php; \
 	php ./installer.php --install-dir=/usr/local/bin --filename=composer; \
 	chmod +x /usr/local/bin/composer;
 

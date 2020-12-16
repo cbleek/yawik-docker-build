@@ -11,6 +11,9 @@ services:
     volumes:
       - ./app:/app
     container_name: php
+    depends_on: 
+      - selenium
+      - db
     hostname: php
     shm_size: '256M'
     links:
@@ -21,4 +24,10 @@ services:
     image: mongo:4.2
     ports:
       - "27017:27017"
-          
+  selenium:
+    container_name: selenium__standalone-chrome
+    hostname: selenium__standalone-chrome
+    image: selenium/standalone-chrome
+    ports:
+      - "4444:4444"
+
