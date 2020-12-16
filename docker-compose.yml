@@ -28,6 +28,12 @@ services:
     container_name: selenium__standalone-chrome
     hostname: selenium__standalone-chrome
     image: selenium/standalone-chrome
+    volumes:
+      - ./app:/app
     ports:
       - "4444:4444"
+    environment:
+      - HUB_HOST=selenium__standalone-chrome
+      - HUB_PORT=4444
+      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=172.20.0.4,172.20.0.3,172.20.0.2,172.20.0.1 -Dwebdriver.chrome.allowlist=php
 

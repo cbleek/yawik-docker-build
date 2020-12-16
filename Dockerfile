@@ -7,14 +7,13 @@ ENV COMPOSER_HOME=$COMPOSER_CACHE_DIR
 ENV DEBIAN_FRONTEND=noninteractive
 
 # update and install things we allways need	
-RUN useradd -ms /bin/bash yawik;\
+RUN useradd -ms /bin/bash -d /app yawik;\
     mkdir -p $COMPOSER_CACHE_DIR; \
     apt-get update; \
     apt-get -yq install \
     	curl git zip unzip nginx joe gnupg2 libxi6 libgconf-2-4 \
     	libcurl4-openssl-dev \
     	libxml2-dev \
-        libpng-dev \
     	zlib1g-dev;
 
 
@@ -35,7 +34,21 @@ RUN curl -sLO https://deployer.org/deployer.phar; \
 	mv deployer.phar /usr/local/bin/dep;
 
 
-RUN docker-php-ext-install intl gd;
+RUN docker-php-ext-install intl;
+
+
+# packages
+RUN apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  # needed for gd
+  libfreetype6-dev \
+  libjpeg62-turbo-dev \
+  libpng-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+# GD
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+  && docker-php-ext-install -j "$(nproc)" gd
 
 
 #RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; \
@@ -59,6 +72,6 @@ RUN curl -sS https://getcomposer.org/installer > installer.php; \
 	php ./installer.php --install-dir=/usr/local/bin --filename=composer; \
 	chmod +x /usr/local/bin/composer;
 
-COPY checkout-yawik.sh /home/yawik/checkout-yawik.sh
+COPY checkout-yawik.sh /app/checkout-yawik.sh
 
 CMD ["nginx", "-g", "daemon off;"]
