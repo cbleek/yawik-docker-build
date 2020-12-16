@@ -1,26 +1,21 @@
 docker image
 ============
 
-Simple container based on ubuntu 20.04 containing everything to run yawik,
-phpunit and behat tests. It's used to run phpunit and behat tests. It contains:
+Simple container based on [php:7.4}(https://hub.docker.com/_/php) containing 
+everything to run yawik, phpunit and behat tests. It's used to run phpunit and 
+behat tests. It contains:
 
 - php7.4
-- java
 - composer
 - npm
-- google chome
 - php-mongodb > 1.9
 - php-solr > 2.5
 - nginx
 
 In addition a unprivileged user `yawik` is created. 
 
-The docker images contains a monngodb server, which ist nit started by
-default. A local mongodb can be started by
-
-<pre>
-service mongodb start
-</pre>
+The docker container links a [mongo:4.2](https://hub.docker.com/_/mongo) and a 
+[selenium](https://hub.docker.com/r/selenium/standalone-chrome/) container.
 
 Pushes to the master trigger the build of
 
