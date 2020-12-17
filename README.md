@@ -1,7 +1,7 @@
 docker image
 ============
 
-Simple container based on [php:7.4}(https://hub.docker.com/_/php) containing 
+Simple container based on [php:7.4](https://hub.docker.com/_/php) containing 
 everything to run yawik, phpunit and behat tests. It's used to run phpunit and 
 behat tests. It contains:
 
