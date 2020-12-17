@@ -16,14 +16,6 @@ RUN useradd -ms /bin/bash -d /app yawik;\
     	libxml2-dev \
     	zlib1g-dev;
 
-
-#RUN apt-get -yq install software-properties-common;
-#	add-apt-repository ppa:linuxuprising/java;\
-#	apt-get update;
-#	apt-get -yq install oracle-java11-installer;
-
-
-
 # Install Nodes
 RUN  curl -sL https://deb.nodesource.com/setup_12.x | bash - ; \
      apt-get -y install nodejs;
@@ -33,9 +25,7 @@ RUN curl -sLO https://deployer.org/deployer.phar; \
 	chmod +x deployer.phar; \
 	mv deployer.phar /usr/local/bin/dep;
 
-
 RUN docker-php-ext-install intl;
-
 
 # packages
 RUN apt-get update \
@@ -49,15 +39,6 @@ RUN apt-get update \
 # GD
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install -j "$(nproc)" gd
-
-
-#RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; \
-#	apt-get install -y ./google-chrome-stable_current_amd64.deb; \
-#	rm google-chrome-stable_current_amd64.deb;
-
-# Intall PHP and extensions
-#RUN  apt-get update; apt-get install -y openjdk-14-jre-headless \
-#	chromium-chromedriver;
 
 # Install PHP mongodb extension
 RUN pecl install mongodb; \
