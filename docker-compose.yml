@@ -35,5 +35,5 @@ services:
     environment:
       - HUB_HOST=selenium__standalone-chrome
       - HUB_PORT=4444
-      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=172.20.0.4,172.20.0.3,172.20.0.2,172.20.0.1 -Dwebdriver.chrome.allowlist=php
+      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=172.0.0.0/8 -Dwebdriver.chrome.allowlist=php
 
