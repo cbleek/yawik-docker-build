@@ -3,3 +3,5 @@ DEADJOE
 remove-all.sh
 
 app
+
+node_modules
