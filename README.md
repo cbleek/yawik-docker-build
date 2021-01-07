@@ -11,6 +11,8 @@ behat tests. It contains:
 - php-mongodb > 1.9
 - php-solr > 2.5
 - nginx
+- pip3
+- mkdocs
 
 In addition a unprivileged user `yawik` is created. 
 

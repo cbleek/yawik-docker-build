@@ -14,6 +14,7 @@ RUN useradd -ms /bin/bash -d /app yawik;\
     	curl git zip unzip nginx joe gnupg2 libxi6 libgconf-2-4 \
     	libcurl4-openssl-dev \
     	libxml2-dev \
+    	python3-pip \
     	zlib1g-dev;
 
 # Install Nodes
@@ -52,6 +53,10 @@ RUN pecl install solr; \
 RUN curl -sS https://getcomposer.org/installer > installer.php; \
 	php ./installer.php --install-dir=/usr/local/bin --filename=composer; \
 	chmod +x /usr/local/bin/composer;
+	
+# Install mkdocs
+RUN pip3 install mkdocs; \
+	pip3 install mkdocs-material;
 
 COPY checkout-yawik.sh /app/checkout-yawik.sh
 
