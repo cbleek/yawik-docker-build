@@ -1,0 +1,53 @@
+{
+  "name": "build",
+  "description": "yawik build docker image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:yawik/docker/build.git"
+  },
+  "author": "Carsten Bleek",
+  "license": "MIT",
+  "devDependencies": {
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/gitlab": "^6.0.8",
+    "semantic-release": "^17.3.0"
+  },
+    "release": {
+    "branches": [
+      "latest"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/gitlab",
+        {
+          "gitlabUrl": "https://gitlab.com/cross-solution/docs/cross-solution.git",
+          "assets": [
+            {
+              "path": "README.md",
+              "label": "Documentation"
+            },
+            {
+              "path": "CHANGELOG.md",
+              "label": "ChangeLog"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "verifyConditionsCmd": "./bin/verify.sh",
+          "publishCmd": "./bin/publish.sh ${nextRelease.version} ${options.branch} ${commits.length} ${Date.now()}"
+        }
+      ]
+    ]
+  }
+}
