@@ -1,11 +1,11 @@
 docker image
 ============
 
-Simple container based on [php:7.4](https://hub.docker.com/_/php) containing 
+Simple container based on [php:8.0](https://hub.docker.com/_/php) containing 
 everything to run yawik, phpunit and behat tests. It's used to run phpunit and 
 behat tests. It contains:
 
-- php7.4
+- php8.0
 - composer
 - npm
 - php-mongodb > 1.9
@@ -16,7 +16,7 @@ behat tests. It contains:
 
 In addition a unprivileged user `yawik` is created. 
 
-The docker container links a [mongo:4.2](https://hub.docker.com/_/mongo) and a 
+The docker container links a [mongo:4.4](https://hub.docker.com/_/mongo) and a 
 [selenium](https://hub.docker.com/r/selenium/standalone-chrome/) container.
 
 Pushes to the master trigger the build of
@@ -35,8 +35,8 @@ Installation
 you can build and run the docker container by:
 
 <pre>
-git clone https://github.com/cross-solution/yawik-docker-builf
-cd yawik-docker-build
+git clone https://gitlab.com/yawik/docker/build.git
+cd build
 docker-composer up
 </pre>
 
